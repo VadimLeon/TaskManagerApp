@@ -1,0 +1,16 @@
+// rpc_interface.idl
+[
+    uuid(12345678-9012-3456-7890-123456789012),
+    version(1.0)
+]
+library RpcInterface
+{
+    import "unknwn.idl";
+
+    // Interface representing the remote procedures.
+    interface IRemoteProcedures
+    {
+        string Hello();
+        void Print([in] string message);
+    };
+};

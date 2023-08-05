@@ -5,13 +5,30 @@
 // Class containing responses to client requests
 class RemoteProcedures : public IRemoteProcedures {
 public:
-    std::string Hello() override {
-        std::cout << "Hello" << std::endl;
-        return "Hello";
+    // Command processing
+    std::string CommandProcessing(const std::string command) {
+        std::string report;
+
+        if (command.length() > 5 && (command.substr(0, 6) == "print " || command.substr(0, 6) == "Print ") ) {
+            report = this->Print(command.substr(6));
+        } else if (command == "hello" || command == "Hello") {
+            report = this->Hello();
+        } else {
+            std::cerr << "Invalid command.\nReceived command: " << command << std::endl;
+            report = "Invalid command. Please check the spelling of the command.";
+        }
+
+        return report;
     }
 
-    void Print(const std::string& message) override {
+    std::string Hello() override {
+        std::cout << "Hello" << std::endl;
+        return "Printing \"Hello\" has done.";
+    }
+
+    std::string Print(const std::string& message) override {
         std::cout << message << std::endl;
+        return ("Printing message \"" + message + "\" has done.");
     }
 };
 

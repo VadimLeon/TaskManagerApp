@@ -40,13 +40,7 @@ int main() {
         if(command == "exit") { break; }
 
         // Command processing
-        if (command.length() > 5 && command.substr(0, 6) == "print ") {
-            remoteProcedures->Print(command.substr(6));
-        } else if (command == "hello" || command == "Hello") {
-            remoteProcedures->Hello();
-        } else {
-            std::cerr << "Invalid command." << std::endl;
-        }
+        std::cout << remoteProcedures->CommandProcessing(command) << std::endl;
 
         remoteProcedures->Release();
     }
